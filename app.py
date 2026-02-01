@@ -11,7 +11,9 @@ HTML = '''
     <style>
         * { box-sizing: border-box; }
         body { font-family: -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #0d1117; color: #c9d1d9; }
-        h1 { color: #58a6ff; }
+        .header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+        .logo-image { width: 56px; height: 56px; }
+        h1 { color: #58a6ff; margin: 0; }
         input { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #30363d; border-radius: 6px; background: #161b22; color: #c9d1d9; margin-bottom: 12px; }
         button { padding: 12px 24px; font-size: 16px; background: #238636; color: white; border: none; border-radius: 6px; cursor: pointer; }
         button:hover { background: #2ea043; }
@@ -26,7 +28,10 @@ HTML = '''
     </style>
 </head>
 <body>
-    <h1>sweepy</h1>
+    <div class="header">
+        <img src="/static/sweepy.png" alt="sweepy" class="logo-image">
+        <h1>sweepy</h1>
+    </div>
     <p>Sweep away unused imports from your codebase.</p>
     <input type="text" id="repo" placeholder="https://github.com/user/repo">
     <button onclick="analyze()">Analyze</button>
@@ -57,6 +62,9 @@ HTML = '''
             
             let html = '<div class="summary">';
             html += 'Repository: ' + data.repo + '<br>';
+            if (data.branch) {
+                html += 'Branch: ' + data.branch + '<br>';
+            }
             html += 'Files analyzed: ' + data.files_analyzed + '<br>';
             html += 'Unused imports: ' + data.unused_imports.length + '</div>';
             
@@ -94,6 +102,7 @@ def analyze_repo():
     
     return jsonify({
         'repo': result.repo_path,
+        'branch': result.branch,
         'files_analyzed': result.files_analyzed,
         'unused_imports': [
             {'file': item.file, 'line': item.line, 'module': item.module}
