@@ -47,7 +47,7 @@ HTML = '''
             btn.disabled = true;
             btn.textContent = 'Analyzing...';
             result.style.display = 'block';
-            result.innerHTML = 'Loading...';
+            result.innerHTML = 'Cloning repository and analyzing imports. <br>This may take a moment for large repos.';
             
             const res = await fetch('/analyze?repo=' + encodeURIComponent(repo));
             const data = await res.json();
