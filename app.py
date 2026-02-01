@@ -12,7 +12,7 @@ HTML = '''
         * { box-sizing: border-box; }
         body { font-family: -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #0d1117; color: #c9d1d9; }
         .header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
-        .logo-image { width: 56px; height: 56px; }
+        .logo-image { width: 56px; height: 56px; background: transparent; }
         h1 { color: #58a6ff; margin: 0; }
         input { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #30363d; border-radius: 6px; background: #161b22; color: #c9d1d9; margin-bottom: 12px; }
         button { padding: 12px 24px; font-size: 16px; background: #238636; color: white; border: none; border-radius: 6px; cursor: pointer; }
